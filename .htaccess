@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /
+
+<Files .users>
+	Order Allow,Deny
+	Deny from all
+</Files>

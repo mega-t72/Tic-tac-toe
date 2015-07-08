@@ -37,4 +37,18 @@
 	$messages['ru']['again']			= 'Играть снова?';
 	$messages['en']['again title']		= 'Again?';
 	$messages['ru']['again title']		= 'Играть снова?';
+	$messages['en']['login']			= 'Login';
+	$messages['ru']['login']			= 'Логин';
+	$messages['en']['password']			= 'Password';
+	$messages['ru']['password']			= 'Пароль';
+	$messages['en']['send']				= 'Send';
+	$messages['ru']['send']				= 'Отправить';
+	$messages['en']['signup']			= 'Signup';
+	$messages['ru']['signup']			= 'Регистрация';
+	$messages['en']['login error']		= 'Login error. Try again.';
+	$messages['ru']['login error']		= 'Ошибка авторизации. Попробуйте еще раз.';
+	$messages['en']['signup error']		= 'Signup error. Try again.';
+	$messages['ru']['signup error']		= 'Ошибка регистрации. Попробуйте еще раз.';
+	$messages['en']['signup ok']		= 'Signup was finished successfully. Log in, please.';
+	$messages['ru']['signup ok']		= 'Регистрация прошла успешно, введите данные для авторизации.';
 ?>

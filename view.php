@@ -42,7 +42,7 @@
 							font-size	: 60pt;
 						}
 						.al{
-							width	: 60px;
+							width	: 80px;
 							display	: inline-block;
 						}
 						.error{
@@ -145,19 +145,22 @@
 		public function logon(){
 			ob_start();
 			?><form method="POST" action="/?LogonQuery"><div class="container-fluid">
-				<div class="row">
-					<div class="col-xs-12 text-center"><?php
+				<div class="row"><?
+					//	языковая панель
+					$this->ShowLanguageBar();
+					//
+					?><div class="col-xs-12 text-center"><?php
 							if( isset( $_REQUEST['error'] ) ){
-								?><span class="error">Ошибка авторизации. Попробуйте еще раз.</span><?php
+								?><span class="error"><?php echo ln( 'login error' ); ?></span><?php
 							}else if( isset( $_REQUEST['ok'] ) ){
-								?><span class="error">Регистрация прошла успешно, введите данные для авторизации.</span><?php
+								?><span class="error"><?php echo ln( 'signup ok' ); ?></span><?php
 							}
 						?><br />
-						<span class="al">Логин:</span><input name="login" type="text" /><br />
-						<span class="al">Пароль:</span><input name="pass" type="password" /><br />
+						<span class="al"><?php echo ln( 'login' ); ?>:</span><input name="login" type="text" /><br />
+						<span class="al"><?php echo ln( 'password' ); ?>:</span><input name="pass" type="password" /><br />
 						<br />
-						<input type="submit" class="btn btn-default" />
-						&nbsp; <a href="/?SignUp" type="button" class="btn btn-default">Регистрация</a>
+						<input type="submit" class="btn btn-default" value="<?php echo ln( 'send' ); ?>"/>
+						&nbsp; <a href="/?SignUp" type="button" class="btn btn-default"><?php echo ln( 'signup' ); ?></a>
 					</div>
 				</div>
 			</div></form><?php
@@ -166,16 +169,19 @@
 		public function SignUp(){
 			ob_start();
 			?><form method="POST" action="/?SignUpQuery"><div class="container-fluid">
-				<div class="row">
-					<div class="col-xs-12 text-center"><?php
+				<div class="row"><?php
+					//	языковая панель
+					$this->ShowLanguageBar();
+					//
+					?><div class="col-xs-12 text-center"><?php
 							if( isset( $_REQUEST['error'] ) ){
-								?><span class="error">Ошибка регистрации. Попробуйте еще раз.</span><?php
+								?><span class="error"><?php echo ln( 'signup error' ); ?></span><?php
 							}
 						?><br />
-						<span class="al">Логин:</span><input name="login" type="text" /><br />
-						<span class="al">Пароль:</span><input name="pass" type="password" /><br />
+						<span class="al"><?php echo ln( 'login' ); ?>:</span><input name="login" type="text" /><br />
+						<span class="al"><?php echo ln( 'password' ); ?>:</span><input name="pass" type="password" /><br />
 						<br />
-						<input type="submit" class="btn btn-default" />
+						<input type="submit" class="btn btn-default" value="<?php echo ln( 'send' ); ?>" />
 					</div>
 				</div>
 			</div></form><?php

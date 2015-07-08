@@ -22,7 +22,7 @@
 			$result	= array();
 			if( $Paths ){
 				foreach( $Paths as $path ){
-					if( preg_match( "/games\/\.(\d)-(\d)/", $path, $match ) ){
+					if( preg_match( "/games\/\.(\d+)-(\d+)/", $path, $match ) ){
 						$result[]	= new Game( intval( $match[1] ), intval( $match[2] ) );
 					}
 				}

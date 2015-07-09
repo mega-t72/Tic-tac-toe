@@ -5,7 +5,7 @@
 		public $Login	= false;
 
 		public static function Create( $login, $md5 ){
-			$db	= explode( "\r\n", file_get_contents( ".users" ) );
+			$db	= preg_split( "/[\r\n]+/", file_get_contents( ".users" ) );
 			//
 			foreach( $db as $line ){
 				$u	= explode( "::", $line );
@@ -20,7 +20,7 @@
 
 		public static function GetList(){
 			$result	= array();
-			$db		= explode( "\r\n", file_get_contents( ".users" ) );
+			$db		= preg_split( "/[\r\n]+/", file_get_contents( ".users" ) );
 			foreach( $db as $ID => $line ){
 				$u	= explode( "::", $line );
 				if( count( $u ) == 2 ){
@@ -31,7 +31,7 @@
 		}
 
 		public static function Logon( $login, $md5 ){
-			$db	= explode( "\r\n", file_get_contents( ".users" ) );
+			$db	= preg_split( "/[\r\n]+/", file_get_contents( ".users" ) );
 			//
 			foreach( $db as $ID => $line ){
 				$u	= explode( "::", $line );
@@ -52,7 +52,7 @@
 			$this->ID		= $ID;
 			$this->Login	= $Login;
 			if( $Login === false ){
-				$db	= explode( "\r\n", file_get_contents( ".users" ) );
+				$db	= preg_split( "/[\r\n]+/", file_get_contents( ".users" ) );
 				if( isset( $db[$ID] ) ){
 					$u	= explode( "::", $db[$ID] );
 					if( count( $u ) == 2 ){

@@ -1,38 +1,53 @@
 <?php
+	function ln( $ID ){
+		global $messages;
+		//
+		$LID	= $_SESSION['ln'] ? $_SESSION['ln'] : 'en';
+		return isset( $messages[$LID][$ID] ) ? $messages[$LID][$ID] : false;
+	}
+
 	include( "user.php" );
 	include( "game.php" );
-	include( "view.php" );
-	include( "controller.php" );
+	include( "view/base.php" );
+	include( "view/auth.php" );
+	include( "view/game.php" );
+	include( "ctl/auth.php" );
+	include( "ctl/game.php" );
+	include( "ctl/toggle.php" );
+	include( "ctl/turn.php" );
 	include( "ln.php" );
 	//
 	session_start();
 	//
-	$c	= new Controller;
-	if( isset( $_REQUEST['New'] ) ){
-		$c->NewGame();
-	}else if( isset( $_REQUEST['Logon'] ) ){
-		$c->Logon();
-	}else if( isset( $_REQUEST['SignUp'] ) ){
-		$c->SignUp();
-	}else if( isset( $_REQUEST['SignUpQuery'] ) ){
-		$c->SignUpQuery();
-	}else if( isset( $_REQUEST['LogonQuery'] ) ){
-		$c->LogonQuery();
-	}else if( isset( $_REQUEST['Logout'] ) ){
-		$c->Logout();
-	}else if( isset( $_REQUEST['ChLn'] ) ){
-		$c->ChLn();
-	}else if( isset( $_REQUEST['ChMarker'] ) ){
-		$c->ChMarker();
-	}else if( isset( $_REQUEST['Step'] ) ){
-		$c->Step();
-	}else if( isset( $_REQUEST['Approve'] ) ){
-		$c->Approve();
-	}else if( isset( $_REQUEST['Reject'] ) ){
-		$c->Reject();
-	}else if( isset( $_REQUEST['Ajax'] ) ){
-		$c->Ajax();
+	$keys	= array_keys( $_REQUEST );
+	$auth	= array_intersect( $keys, array( 'Logon', 'SignUp', 'SignUpQuery', 'LogonQuery', 'Logout' ) );
+	if( !empty( $auth ) ){
+		$c	= new Controller_auth;
+		$m	= array_shift( $auth );
+		$c->$m();
 	}else{
-		$c->Index();
+		$toggle	= array_intersect( $keys, array( 'ChLn', 'ChMarker' ) );
+		if( !empty( $toggle ) ){
+			$c	= new Controller_toggle;
+			$m	= array_shift( $toggle );
+			$c->$m();
+		}else{
+			$turn	= array_intersect( $keys, array( 'Step', 'Approve', 'Reject', ) );
+			if( !empty( $turn ) ){
+				//print_r( $turn );print_r( $m );die;
+				$c	= new Controller_turn;
+				$m	= array_shift( $turn );
+				$c->$m();
+			}else{
+				$game	= array_intersect( $keys, array( 'NewGame', 'Ajax', ) );
+				$c		= new Controller_game;
+				if( !empty( $game ) ){
+					$m	= array_shift( $game );
+					$c->$m();
+				}else{
+					$c->index();
+				}
+			}
+		}
 	}
 ?>

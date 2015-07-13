@@ -51,4 +51,8 @@
 	$messages['ru']['signup error']		= 'Ошибка регистрации. Попробуйте еще раз.';
 	$messages['en']['signup ok']		= 'Signup was finished successfully. Log in, please.';
 	$messages['ru']['signup ok']		= 'Регистрация прошла успешно, введите данные для авторизации.';
+	$messages['en']['go to game']		= 'Go to Game';
+	$messages['ru']['go to game']		= 'Перейти к игре';
+	$messages['en']['invite']			= 'Send invitation';
+	$messages['ru']['invite']			= 'Отправить приглашение';
 ?>
